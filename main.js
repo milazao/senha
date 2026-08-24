@@ -6,10 +6,6 @@ const campoSenha =
 const numeroSenha =
     document.querySelector("#numero-senha");
 
-// Letras que poderão ser utilizadas
-const letrasMaiusculas =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
 // Tamanho inicial da senha
 let tamanhoSenha = 8;
 
@@ -62,3 +58,20 @@ function aumentaTamanho() {
 numeroSenha.textContent = tamanhoSenha;
 geraSenha();
 }
+
+//constante "checkbox"
+const checkboxes = 
+    document.querySelectorAll ("checkbox")
+    checkboxes[0].checked = true ;
+
+//constante letras maiúsculas
+const letrasMaiusculas =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+//constante letras minúsculas
+const letrasMinusculas =
+    "abcdefghijklmnopqrstuvwxyz";
+
+//constante símbolos
+const simbolos =
+    "!?$@#%&*-+";
