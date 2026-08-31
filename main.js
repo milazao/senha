@@ -24,17 +24,19 @@ function geraSenha() {
    let senha = "";
 
 
-   // --- ADIÇÃO DOS IFs PEDIDOS (Tratando os índices corretamente) ---
+   // --- ADIÇÃO DOS IFs QUE VOCÊ PEDIU (Ajustados com os índices certos) ---
    let alfabeto = "";
-   if (typeof checkboxes !== 'undefined' && checkboxes.length > 0) {
-       if (checkboxes[0].checked) { alfabeto += letrasMaiusculas; }
-       if (checkboxes[1] && checkboxes[1].checked) { alfabeto += letrasMinusculas; }
-       if (checkboxes[2] && checkboxes[2].checked) { alfabeto += simbolos; }
+   
+   // Verificamos se as checkboxes já foram corrigidas e carregadas na tela
+   if (typeof checkboxes Corrigidas !== 'undefined') {
+       if (checkboxesCorrigidas[0].checked) { alfabeto += letrasMaiusculas; }
+       if (checkboxesCorrigidas[1].checked) { alfabeto += letrasMinusculas; }
+       if (checkboxesCorrigidas[2].checked) { alfabeto += simbolos; }
    }
 
-   // Se o alfabeto estiver vazio (ou antes de carregar as variáveis), usa as maiúsculas como padrão
+   // Se nenhuma checkbox estiver marcada ou se for o carregamento inicial, usa as maiúsculas como padrão
    if (alfabeto === "") {
-       alfabeto = typeof letrasMaiusculas !== 'undefined' ? letrasMaiusculas : "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+       alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
    }
 
 
@@ -42,7 +44,7 @@ function geraSenha() {
    for (let i = 0; i < tamanhoSenha; i++) {
 
 
-       // Gera um número aleatório (Alterado para usar a variável alfabeto)
+       // Gera um número aleatório (Alterado para ler do alfabeto dinâmico)
        let numeroAleatorio =
            Math.random() * alfabeto.length;
 
@@ -52,7 +54,7 @@ function geraSenha() {
            Math.floor(numeroAleatorio);
 
 
-   // Escolhe uma letra e adiciona à senha (Alterado para usar a variável alfabeto)
+   // Escolhe uma letra e adiciona à senha (Alterado para ler do alfabeto dinâmico)
    senha =
        senha +
        alfabeto[numeroAleatorio];
@@ -91,8 +93,6 @@ geraSenha();
 //constante "checkbox"
 const checkboxes =
    document.querySelectorAll ("checkbox")
-   // CORREÇÃO SEM APAGAR: Como querySelectorAll("checkbox") não encontra os inputs, redefinimos abaixo:
-   checkboxes = document.querySelectorAll("input[type='checkbox']"); 
    checkboxes[0].checked = true ;
 
 
@@ -111,10 +111,20 @@ const simbolos =
    "!?$@#%&*-+";
 
 
-// --- ADIÇÃO DO LOOP FOR PEDIDO ---
-for (let i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].onclick = geraSenha;
+// --- CORREÇÃO E ATIVAÇÃO DO CÓDIGO (Sem apagar nada acima) ---
+
+// 1. Criamos a lista correta apontando para os elementos reais do HTML
+var checkboxesCorrigidas = document.querySelectorAll("input[type='checkbox']");
+
+// 2. Garante que a primeira caixa comece marcada no carregamento
+if (checkboxesCorrigidas.length > 0) {
+    checkboxesCorrigidas[0].checked = true;
 }
 
-// Executa a função novamente aqui no fim, agora que todas as variáveis existem de fato
+// 3. O LAÇO FOR QUE VOCÊ PEDIU: Aplica a função geraSenha ao clicar em qualquer checkbox
+for (let i = 0; i < checkboxesCorrigidas.length; i++) {
+    checkboxesCorrigidas[i].onclick = geraSenha;
+}
+
+// 4. Executa a função final para exibir a senha certa logo de início
 geraSenha();
